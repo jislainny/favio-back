@@ -9,10 +9,15 @@ test.group('List favoritos', () => {
 
  })
  //TDD
-  test('exibir favorito vom id', async ({client})=>{
+  test('exibir favorito com id', async ({client})=>{
     const resposta= await client.get('/favoritos/1')
     resposta.assertStatus(200)
-    resposta.assertBodyContains({nome:"Google"})
+    resposta.assertBodyContains({id:1})
+  })
+  test('favorito nao encontrado', async({client})=>{
+    const resposta=await client.get('/favoritos/idnaoexiste')
+    resposta.assertStatus(404)
+
   })
 
  })
