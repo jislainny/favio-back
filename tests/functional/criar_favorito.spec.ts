@@ -17,5 +17,6 @@ test.group('Criar favorito', () => {
       { nome: 'IFRN'})
  resposta.assertStatus(400)
   })
+  
 
 })
