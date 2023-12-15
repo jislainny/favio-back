@@ -56,4 +56,6 @@ Route.post('/favoritos', async ({request,response})=> {
 
 
 
+
+
 Route.resource('favoritao', 'FavoritosController').apiOnly()

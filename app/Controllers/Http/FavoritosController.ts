@@ -11,9 +11,6 @@ export default class FavoritosController {
    return favoritos 
   }
  
-
-
-
   public async store({request, response}: HttpContextContract) {
     const {nome,url,importante} = request.body()
     const newFavorito={id:favoritos.length+1,nome,url,importante}
