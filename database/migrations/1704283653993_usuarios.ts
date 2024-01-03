@@ -1,24 +1,26 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Usuario extends BaseModel {
-  @column({ isPrimary: true })
-  public id: number
+export default class extends BaseSchema {
+  protected tableName = 'usuarios'
 
-  @column()
-  public nome: string
-
-  @column()
-  public cpf: string
-
-  @column()
-  public senha: string
+  public async up () {
+    this.schema.createTable(this.tableName, (table) => {
+      table.increments('id')
+      table.string('nome')
+      table.string('cpf')
+      table.string('senha')
 
 
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+      /**
+       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
+       */
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
+    })
+  }
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public async down () {
+    this.schema.dropTable(this.tableName)
+  }
 }

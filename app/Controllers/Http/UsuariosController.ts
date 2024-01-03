@@ -15,6 +15,7 @@ export default class UsuariosController {
     novoUsuario.senha = novasenha
     Usuario.create(novoUsuario)
     return response.status(201).send(novoUsuario)
+  
   }
 
   public async show({ params, response }: HttpContextContract) {
